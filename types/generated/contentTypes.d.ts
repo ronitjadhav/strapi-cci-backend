@@ -788,6 +788,196 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiClientClient extends Schema.CollectionType {
+  collectionName: 'clients';
+  info: {
+    singularName: 'client';
+    pluralName: 'clients';
+    displayName: 'Client';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    contacts: Attribute.Relation<
+      'api::client.client',
+      'oneToMany',
+      'api::contact.contact'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCompanyCompany extends Schema.CollectionType {
+  collectionName: 'companies';
+  info: {
+    singularName: 'company';
+    pluralName: 'companies';
+    displayName: 'Company';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    email: Attribute.Email;
+    address: Attribute.Text;
+    city: Attribute.String;
+    country: Attribute.String;
+    website: Attribute.String;
+    logo: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    first_name: Attribute.String;
+    last_name: Attribute.String;
+    phone_number: Attribute.String;
+    email: Attribute.Email;
+    job: Attribute.String;
+    address: Attribute.Text;
+    client: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'api::client.client'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDeliveryDelivery extends Schema.CollectionType {
+  collectionName: 'deliveries';
+  info: {
+    singularName: 'delivery';
+    pluralName: 'deliveries';
+    displayName: 'Delivery';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    date: Attribute.Date;
+    description: Attribute.Text;
+    quantity: Attribute.Decimal;
+    ready_items: Attribute.JSON;
+    company: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'api::company.company'
+    >;
+    items: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToMany',
+      'api::item.item'
+    >;
+    contact: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'api::contact.contact'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiItemItem extends Schema.CollectionType {
+  collectionName: 'items';
+  info: {
+    singularName: 'item';
+    pluralName: 'items';
+    displayName: 'Item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    challan_number: Attribute.String;
+    quantity: Attribute.Decimal;
+    date: Attribute.Date;
+    unit: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +996,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::client.client': ApiClientClient;
+      'api::company.company': ApiCompanyCompany;
+      'api::contact.contact': ApiContactContact;
+      'api::delivery.delivery': ApiDeliveryDelivery;
+      'api::item.item': ApiItemItem;
     }
   }
 }

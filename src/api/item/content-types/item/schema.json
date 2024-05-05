@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "Item"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "challan_number": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "date": {
+      "type": "date"
+    },
+    "unit": {
+      "type": "string"
+    }
+  }
+}
