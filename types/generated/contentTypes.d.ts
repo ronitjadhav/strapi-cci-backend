@@ -934,6 +934,7 @@ export interface ApiDeliveryDelivery extends Schema.CollectionType {
       'oneToOne',
       'api::contact.contact'
     >;
+    d_challan_no: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

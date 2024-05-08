@@ -41,6 +41,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::contact.contact"
+    },
+    "d_challan_no": {
+      "type": "string"
     }
   }
 }
