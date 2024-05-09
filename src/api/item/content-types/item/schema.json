@@ -4,7 +4,8 @@
   "info": {
     "singularName": "item",
     "pluralName": "items",
-    "displayName": "Item"
+    "displayName": "Item",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,6 +26,10 @@
     },
     "unit": {
       "type": "string"
+    },
+    "delivered": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

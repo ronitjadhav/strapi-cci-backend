@@ -916,7 +916,6 @@ export interface ApiDeliveryDelivery extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     date: Attribute.Date;
-    description: Attribute.Text;
     quantity: Attribute.Decimal;
     ready_items: Attribute.JSON;
     company: Attribute.Relation<
@@ -935,6 +934,7 @@ export interface ApiDeliveryDelivery extends Schema.CollectionType {
       'api::contact.contact'
     >;
     d_challan_no: Attribute.String;
+    submitted: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -959,6 +959,7 @@ export interface ApiItemItem extends Schema.CollectionType {
     singularName: 'item';
     pluralName: 'items';
     displayName: 'Item';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -969,6 +970,7 @@ export interface ApiItemItem extends Schema.CollectionType {
     quantity: Attribute.Decimal;
     date: Attribute.Date;
     unit: Attribute.String;
+    delivered: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

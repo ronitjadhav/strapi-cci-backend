@@ -18,9 +18,6 @@
     "date": {
       "type": "date"
     },
-    "description": {
-      "type": "text"
-    },
     "quantity": {
       "type": "decimal"
     },
@@ -44,6 +41,10 @@
     },
     "d_challan_no": {
       "type": "string"
+    },
+    "submitted": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
